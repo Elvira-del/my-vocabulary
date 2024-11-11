@@ -1,6 +1,6 @@
 ## Stack
 
-- Next.js
+- React
 - TypeScript
 - Zustand
 - React Testing Library
