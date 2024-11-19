@@ -1,5 +1,12 @@
 import { FC, ReactNode } from "react";
-import { AppBar, Box, Container, IconButton, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Container,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import StarIcon from "@mui/icons-material/Star";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -13,7 +20,12 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
     <>
       <AppBar position="static">
         <Container>
-          <Toolbar sx={{ justifyContent: "right" }}>
+          <Toolbar>
+            <Box sx={{ flexGrow: 1 }}>
+              <Typography component="h1" variant="h6" sx={{ flexGrow: 1 }}>
+                Vocabulary Builder
+              </Typography>
+            </Box>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
                 size="large"
