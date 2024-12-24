@@ -7,6 +7,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 import { MenuItem, TextField } from "@mui/material";
+import useVocabularyStore from "src/store/store";
 import { AddWordButton } from "../AddWordButton/AddWordButton";
 
 type WordClasses = string[];
@@ -40,7 +41,7 @@ const formContentClass = {
 };
 
 export const AddWordDialog: FC = () => {
-  const [vocabulary, setVocabulary] = useState<vocabularyElem[]>([]);
+  const { addWord } = useVocabularyStore();
   const [vocabularyElem, setVocabularyElem] = useState<vocabularyElem>({
     word: "",
     class: "",
@@ -60,6 +61,9 @@ export const AddWordDialog: FC = () => {
     setIsOpen(false);
   };
 
+  console.log("Elem:", vocabularyElem);
+  console.log("Store:", useVocabularyStore.getState());
+
   return (
     <>
       <AddWordButton onOpen={handleDialogOpen} />
@@ -72,7 +76,7 @@ export const AddWordDialog: FC = () => {
           component: "form",
           onSubmit: (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            setVocabulary((prev) => [...prev, vocabularyElem]);
+            addWord(vocabularyElem);
             setVocabularyElem({ word: "", class: "", definition: "" });
             handleDialogClose();
           },
