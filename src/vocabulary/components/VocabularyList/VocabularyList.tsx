@@ -8,22 +8,14 @@ import {
 } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import DeleteOutlineIcon from "@mui/icons-material/Delete";
+import useVocabularyStore from "src/store/store";
 
-type Vocabulary = {
-  id: string;
-  word: string;
-  transcription: string;
-  translate: string;
-};
+export const VocabularyList: FC = () => {
+  const { vocabulary } = useVocabularyStore();
 
-type VocabularyProps = {
-  vocabularyData: Vocabulary[];
-};
-
-export const VocabularyList: FC<VocabularyProps> = ({ vocabularyData }) => {
   return (
     <List>
-      {vocabularyData.map((elem) => (
+      {vocabulary.map((elem) => (
         <ListItem
           key={elem?.id}
           alignItems="flex-start"
@@ -40,8 +32,8 @@ export const VocabularyList: FC<VocabularyProps> = ({ vocabularyData }) => {
             primary={<Typography component="span">{elem?.word}</Typography>}
             secondary={
               <>
-                <Typography component="p">{elem?.transcription}</Typography>
-                <Typography component="p">{elem?.translate}</Typography>
+                <Typography component="p">{elem?.class}</Typography>
+                <Typography component="p">{elem?.definition}</Typography>
               </>
             }
           />

@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type VocabularyElem = {
+  id: string;
   word: string;
   class: string;
   definition: string;
@@ -9,7 +10,7 @@ type VocabularyElem = {
 
 type VocabularyStore = {
   vocabulary: VocabularyElem[];
-  addWord: (word: VocabularyElem) => void;
+  addWord: (word: Omit<VocabularyElem, "id">) => void;
 };
 
 const useVocabularyStore = create<VocabularyStore>()(
