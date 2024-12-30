@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type VocabularyElem = {
   word: string;
@@ -11,10 +12,17 @@ type VocabularyStore = {
   addWord: (word: VocabularyElem) => void;
 };
 
-const useVocabularyStore = create<VocabularyStore>((set) => ({
-  vocabulary: [],
-  addWord: (word: VocabularyElem) =>
-    set((state) => ({ vocabulary: [...state.vocabulary, word] })),
-}));
+const useVocabularyStore = create<VocabularyStore>()(
+  persist(
+    (set) => ({
+      vocabulary: [],
+      addWord: (word: VocabularyElem) =>
+        set((state) => ({ vocabulary: [...state.vocabulary, word] })),
+    }),
+    {
+      name: "vocabulary-store",
+    },
+  ),
+);
 
 export default useVocabularyStore;
