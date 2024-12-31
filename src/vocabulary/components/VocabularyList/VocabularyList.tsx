@@ -20,12 +20,12 @@ export const VocabularyList: FC = () => {
           key={elem?.id}
           alignItems="flex-start"
           secondaryAction={
-            <IconButton>
+            <IconButton edge="end" aria-label="delete">
               <DeleteOutlineIcon />
             </IconButton>
           }
         >
-          <IconButton>
+          <IconButton edge="start" aria-label="favorite">
             <StarBorderIcon />
           </IconButton>
           <ListItemText

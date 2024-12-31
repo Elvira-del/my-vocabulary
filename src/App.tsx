@@ -1,6 +1,6 @@
 import { Layout } from "./components/Layout/Layout";
 import { AddWordDialog } from "./components/AddWordDialog/AddWordDialog";
-import { VocabularyList } from "./vocabulary/components/VocabularyList/VocabularyList";
+import { VocabularyPage } from "./vocabulary/VocabularyPage";
 import "./App.css";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <Layout>
       <h1>App title</h1>
       <AddWordDialog />
-      <VocabularyList />
+      <VocabularyPage />
     </Layout>
   );
 }
