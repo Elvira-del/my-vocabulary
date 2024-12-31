@@ -11,7 +11,7 @@ import DeleteOutlineIcon from "@mui/icons-material/Delete";
 import useVocabularyStore from "src/store/store";
 
 export const VocabularyList: FC = () => {
-  const { vocabulary } = useVocabularyStore();
+  const { vocabulary, deleteWord } = useVocabularyStore();
 
   return (
     <List>
@@ -20,7 +20,11 @@ export const VocabularyList: FC = () => {
           key={elem?.id}
           alignItems="flex-start"
           secondaryAction={
-            <IconButton edge="end" aria-label="delete">
+            <IconButton
+              edge="end"
+              onClick={() => deleteWord(elem.id)}
+              aria-label="delete"
+            >
               <DeleteOutlineIcon />
             </IconButton>
           }
