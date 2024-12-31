@@ -23,12 +23,6 @@ const wordClasses: WordClasses = [
   "conjunction",
 ];
 
-type vocabularyElem = {
-  word: string;
-  class: string;
-  definition: string;
-};
-
 const dialogClass = {
   padding: 3,
 };
@@ -41,16 +35,19 @@ const formContentClass = {
 };
 
 export const AddWordDialog: FC = () => {
-  const { addWord } = useVocabularyStore();
-  const [vocabularyElem, setVocabularyElem] = useState<vocabularyElem>({
+  const [vocabularyElem, setVocabularyElem] = useState({
     word: "",
     class: "",
     definition: "",
   });
   const [isOpen, setIsOpen] = useState(false);
+  const addWord = useVocabularyStore((state) => state.addWord);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setVocabularyElem((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setVocabularyElem((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleDialogOpen = () => {
@@ -61,7 +58,6 @@ export const AddWordDialog: FC = () => {
     setIsOpen(false);
   };
 
-  console.log("Elem:", vocabularyElem);
   console.log("Store:", useVocabularyStore.getState());
 
   return (

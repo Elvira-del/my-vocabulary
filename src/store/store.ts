@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type VocabularyElem = {
+  id: string;
   word: string;
   class: string;
   definition: string;
