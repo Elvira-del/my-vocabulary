@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { v4 as uuidv4 } from "uuid";
 
 type VocabularyElem = {
   id: string;
@@ -10,15 +11,23 @@ type VocabularyElem = {
 
 type VocabularyStore = {
   vocabulary: VocabularyElem[];
-  addWord: (word: VocabularyElem) => void;
+  addWord: (word: Omit<VocabularyElem, "id">) => void;
+  deleteWord: (id: string) => void;
 };
 
 const useVocabularyStore = create<VocabularyStore>()(
   persist(
     (set) => ({
       vocabulary: [],
-      addWord: (word: VocabularyElem) =>
-        set((state) => ({ vocabulary: [...state.vocabulary, word] })),
+      addWord: (word: Omit<VocabularyElem, "id">) =>
+        set((state) => ({
+          vocabulary: [...state.vocabulary, { id: uuidv4(), ...word }],
+        })),
+
+      deleteWord: (id: string) =>
+        set((state) => ({
+          vocabulary: state.vocabulary.filter((elem) => elem.id !== id),
+        })),
     }),
     {
       name: "vocabulary-store",
