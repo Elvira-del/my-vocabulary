@@ -10,7 +10,7 @@ type VocabularyElem = {
 
 type VocabularyStore = {
   vocabulary: VocabularyElem[];
-  addWord: (word: Omit<VocabularyElem, "id">) => void;
+  addWord: (word: VocabularyElem) => void;
 };
 
 const useVocabularyStore = create<VocabularyStore>()(
