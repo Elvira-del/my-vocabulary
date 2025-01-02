@@ -9,21 +9,25 @@ import {
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import DeleteOutlineIcon from "@mui/icons-material/Delete";
-import useVocabularyStore from "src/store/store";
+import useVocabularyStore, { VocabularyElem } from "src/store/store";
 
-export const VocabularyList: FC = () => {
-  const { vocabulary, deleteWord, favoriteWord } = useVocabularyStore();
+type VocabularyListProps = {
+  data: VocabularyElem[];
+};
+
+export const VocabularyList: FC<VocabularyListProps> = ({ data }) => {
+  const { deleteWord, favoriteWord } = useVocabularyStore();
 
   return (
     <List>
-      {vocabulary.map((word) => (
+      {data.map((elem) => (
         <ListItem
-          key={word?.id}
+          key={elem?.id}
           alignItems="flex-start"
           secondaryAction={
             <IconButton
               edge="end"
-              onClick={() => deleteWord(word.id)}
+              onClick={() => deleteWord(elem.id)}
               aria-label="delete"
             >
               <DeleteOutlineIcon />
@@ -32,17 +36,17 @@ export const VocabularyList: FC = () => {
         >
           <IconButton
             edge="start"
-            onClick={() => favoriteWord(word.id)}
+            onClick={() => favoriteWord(elem.id)}
             aria-label="favorite"
           >
-            {word?.favorite ? <StarIcon /> : <StarBorderIcon />}
+            {elem?.favorite ? <StarIcon /> : <StarBorderIcon />}
           </IconButton>
           <ListItemText
-            primary={<Typography component="span">{word?.word}</Typography>}
+            primary={<Typography component="span">{elem?.word}</Typography>}
             secondary={
               <>
-                <Typography component="p">{word?.class}</Typography>
-                <Typography component="p">{word?.definition}</Typography>
+                <Typography component="p">{elem?.class}</Typography>
+                <Typography component="p">{elem?.definition}</Typography>
               </>
             }
           />
