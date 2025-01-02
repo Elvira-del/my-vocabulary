@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { v4 as uuidv4 } from "uuid";
 
-type VocabularyElem = {
+export type VocabularyElem = {
   id: string;
   word: string;
   class: string;
