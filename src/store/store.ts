@@ -7,12 +7,14 @@ type VocabularyElem = {
   word: string;
   class: string;
   definition: string;
+  favorite: boolean;
 };
 
 type VocabularyStore = {
   vocabulary: VocabularyElem[];
   addWord: (word: Omit<VocabularyElem, "id">) => void;
   deleteWord: (id: string) => void;
+  favoriteWord: (id: string) => void;
 };
 
 const useVocabularyStore = create<VocabularyStore>()(
@@ -27,6 +29,12 @@ const useVocabularyStore = create<VocabularyStore>()(
       deleteWord: (id: string) =>
         set((state) => ({
           vocabulary: state.vocabulary.filter((elem) => elem.id !== id),
+        })),
+      favoriteWord: (id: string) =>
+        set((state) => ({
+          vocabulary: state.vocabulary.map((word) =>
+            word.id === id ? { ...word, favorite: !word.favorite } : word,
+          ),
         })),
     }),
     {

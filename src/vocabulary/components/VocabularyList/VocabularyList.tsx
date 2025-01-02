@@ -7,37 +7,42 @@ import {
   Typography,
 } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 import DeleteOutlineIcon from "@mui/icons-material/Delete";
 import useVocabularyStore from "src/store/store";
 
 export const VocabularyList: FC = () => {
-  const { vocabulary, deleteWord } = useVocabularyStore();
+  const { vocabulary, deleteWord, favoriteWord } = useVocabularyStore();
 
   return (
     <List>
-      {vocabulary.map((elem) => (
+      {vocabulary.map((word) => (
         <ListItem
-          key={elem?.id}
+          key={word?.id}
           alignItems="flex-start"
           secondaryAction={
             <IconButton
               edge="end"
-              onClick={() => deleteWord(elem.id)}
+              onClick={() => deleteWord(word.id)}
               aria-label="delete"
             >
               <DeleteOutlineIcon />
             </IconButton>
           }
         >
-          <IconButton edge="start" aria-label="favorite">
-            <StarBorderIcon />
+          <IconButton
+            edge="start"
+            onClick={() => favoriteWord(word.id)}
+            aria-label="favorite"
+          >
+            {word?.favorite ? <StarIcon /> : <StarBorderIcon />}
           </IconButton>
           <ListItemText
-            primary={<Typography component="span">{elem?.word}</Typography>}
+            primary={<Typography component="span">{word?.word}</Typography>}
             secondary={
               <>
-                <Typography component="p">{elem?.class}</Typography>
-                <Typography component="p">{elem?.definition}</Typography>
+                <Typography component="p">{word?.class}</Typography>
+                <Typography component="p">{word?.definition}</Typography>
               </>
             }
           />
