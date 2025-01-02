@@ -39,6 +39,7 @@ export const AddWordDialog: FC = () => {
     word: "",
     class: "",
     definition: "",
+    favorite: false,
   });
   const [isOpen, setIsOpen] = useState(false);
   const addWord = useVocabularyStore((state) => state.addWord);
@@ -73,7 +74,12 @@ export const AddWordDialog: FC = () => {
           onSubmit: (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             addWord(vocabularyElem);
-            setVocabularyElem({ word: "", class: "", definition: "" });
+            setVocabularyElem({
+              word: "",
+              class: "",
+              definition: "",
+              favorite: false,
+            });
             handleDialogClose();
           },
         }}
