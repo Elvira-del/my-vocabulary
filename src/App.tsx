@@ -7,8 +7,8 @@ function App() {
   return (
     <Layout>
       <h1>App title</h1>
-      <AddWordDialog />
       <VocabularyPage />
+      <AddWordDialog />
     </Layout>
   );
 }
