@@ -10,6 +10,7 @@ import {
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import StarIcon from "@mui/icons-material/Star";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { Link } from "react-router";
 
 type LayoutProps = {
   children: ReactNode;
@@ -28,6 +29,8 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
             </Box>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
+                component={Link}
+                to="/favorite"
                 size="large"
                 aria-label="Favorite words"
                 color="inherit"
@@ -36,7 +39,13 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
               </IconButton>
             </Box>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton size="large" aria-label="Vocabulary" color="inherit">
+              <IconButton
+                component={Link}
+                to="/vocabulary"
+                size="large"
+                aria-label="Vocabulary"
+                color="inherit"
+              >
                 <BookmarkIcon />
               </IconButton>
             </Box>
