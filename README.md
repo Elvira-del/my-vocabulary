@@ -1,6 +1,6 @@
 ## Stack
 
-- React
+- React (React Router)
 - TypeScript
 - Zustand
 - React Testing Library
