@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import StarIcon from "@mui/icons-material/Star";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router";
 
@@ -26,17 +25,6 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
               <Typography component="h1" variant="h6" sx={{ flexGrow: 1 }}>
                 Vocabulary Builder
               </Typography>
-            </Box>
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                component={Link}
-                to="/favorite"
-                size="large"
-                aria-label="Favorite words"
-                color="inherit"
-              >
-                <StarIcon />
-              </IconButton>
             </Box>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
               <IconButton
