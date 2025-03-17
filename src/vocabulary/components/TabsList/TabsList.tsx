@@ -1,6 +1,8 @@
 import { FC, SyntheticEvent, useState } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
+import { VocabularyElem } from "src/store/store";
 import { TabPanel } from "../TabPanel/TabPanel";
+import { VocabularyList } from "../VocabularyList/VocabularyList";
 
 function a11yProps(index: number) {
   return {
@@ -9,7 +11,11 @@ function a11yProps(index: number) {
   };
 }
 
-export const TabsList: FC = () => {
+type TabsListProps = {
+  data: VocabularyElem[];
+};
+
+export const TabsList: FC<TabsListProps> = ({ data }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (e: SyntheticEvent, newValue: number) => {
@@ -26,13 +32,13 @@ export const TabsList: FC = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Unlearned words
+        <VocabularyList data={data.filter(({ unlearned }) => !!unlearned)} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Learned words
+        <VocabularyList data={data.filter(({ learned }) => !!learned)} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Favorite words
+        <VocabularyList data={data.filter(({ favorite }) => !!favorite)} />
       </TabPanel>
     </Box>
   );
