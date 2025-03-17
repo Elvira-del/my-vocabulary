@@ -7,6 +7,8 @@ export type VocabularyElem = {
   word: string;
   class: string;
   definition: string;
+  unlearned: boolean;
+  learned: boolean;
   favorite: boolean;
 };
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import useFilterVocabulary from "src/hooks/useFilterVocabulary";
-import { VocabularyList } from "./components/VocabularyList/VocabularyList";
+import { TabsList } from "./components/TabsList/TabsList";
 
 export const VocabularyPage: FC = () => {
   const { searchBar, filteredVocabulary } = useFilterVocabulary();
@@ -8,7 +8,7 @@ export const VocabularyPage: FC = () => {
   return (
     <section>
       {searchBar}
-      <VocabularyList data={filteredVocabulary} />
+      <TabsList data={filteredVocabulary} />
     </section>
   );
 };

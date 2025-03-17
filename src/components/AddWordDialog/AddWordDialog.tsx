@@ -39,6 +39,8 @@ export const AddWordDialog: FC = () => {
     word: "",
     class: "",
     definition: "",
+    unlearned: true,
+    learned: false,
     favorite: false,
   });
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +80,8 @@ export const AddWordDialog: FC = () => {
               word: "",
               class: "",
               definition: "",
+              unlearned: true,
+              learned: false,
               favorite: false,
             });
             handleDialogClose();
