@@ -13,9 +13,10 @@ function a11yProps(index: number) {
 
 type TabsListProps = {
   data: VocabularyElem[];
+  onOpenDeleteDialog: (id: string) => void;
 };
 
-export const TabsList: FC<TabsListProps> = ({ data }) => {
+export const TabsList: FC<TabsListProps> = ({ data, onOpenDeleteDialog }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (e: SyntheticEvent, newValue: number) => {
@@ -32,13 +33,22 @@ export const TabsList: FC<TabsListProps> = ({ data }) => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <VocabularyList data={data.filter(({ unlearned }) => !!unlearned)} />
+        <VocabularyList
+          data={data.filter(({ unlearned }) => !!unlearned)}
+          onOpenDeleteDialog={onOpenDeleteDialog}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <VocabularyList data={data.filter(({ learned }) => !!learned)} />
+        <VocabularyList
+          data={data.filter(({ learned }) => !!learned)}
+          onOpenDeleteDialog={onOpenDeleteDialog}
+        />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <VocabularyList data={data.filter(({ favorite }) => !!favorite)} />
+        <VocabularyList
+          data={data.filter(({ favorite }) => !!favorite)}
+          onOpenDeleteDialog={onOpenDeleteDialog}
+        />
       </TabPanel>
     </Box>
   );

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -8,12 +8,21 @@ import {
   Button,
 } from "@mui/material";
 
-export const DeleteDialog: FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
+type DeleteDialogProps = {
+  isOpenDialog: boolean;
+  onCancelDelete: () => void;
+  onConfirmDelete: () => void;
+};
 
+export const DeleteDialog: FC<DeleteDialogProps> = ({
+  isOpenDialog,
+  onCancelDelete,
+  onConfirmDelete,
+}) => {
   return (
     <Dialog
-      open={isOpen}
+      open={isOpenDialog}
+      onClose={onCancelDelete}
       aria-labelledby="delete-dialog-title"
       aria-describedby="delete-dialog-description"
     >
@@ -26,8 +35,8 @@ export const DeleteDialog: FC = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button>Cancel</Button>
-        <Button>I'm sure</Button>
+        <Button onClick={onCancelDelete}>Cancel</Button>
+        <Button onClick={onConfirmDelete}>I'm sure</Button>
       </DialogActions>
     </Dialog>
   );
