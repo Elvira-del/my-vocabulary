@@ -13,10 +13,14 @@ import useVocabularyStore, { VocabularyElem } from "src/store/store";
 
 type VocabularyListProps = {
   data: VocabularyElem[];
+  onOpenDeleteDialog: (id: string) => void;
 };
 
-export const VocabularyList: FC<VocabularyListProps> = ({ data }) => {
-  const { deleteWord, favoriteWord } = useVocabularyStore();
+export const VocabularyList: FC<VocabularyListProps> = ({
+  data,
+  onOpenDeleteDialog,
+}) => {
+  const { favoriteWord } = useVocabularyStore();
 
   return (
     <List>
@@ -27,7 +31,7 @@ export const VocabularyList: FC<VocabularyListProps> = ({ data }) => {
           secondaryAction={
             <IconButton
               edge="end"
-              onClick={() => deleteWord(elem.id)}
+              onClick={() => onOpenDeleteDialog(elem.id)}
               aria-label="delete"
             >
               <DeleteOutlineIcon />
