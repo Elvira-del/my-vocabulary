@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import SchoolIcon from "@mui/icons-material/School";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router";
 
@@ -27,6 +28,15 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
               </Typography>
             </Box>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <IconButton
+                component={Link}
+                to="/"
+                size="large"
+                aria-label="Practice"
+                color="inherit"
+              >
+                <SchoolIcon />
+              </IconButton>
               <IconButton
                 component={Link}
                 to="/vocabulary"
