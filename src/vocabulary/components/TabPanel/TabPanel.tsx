@@ -21,7 +21,7 @@ export const TabPanel: FC<TabPanelProps> = ({
       aria-labelledby={`tab-${index}`}
       {...rest}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 };
