@@ -1,16 +1,6 @@
 import { FC, ReactNode } from "react";
-import {
-  AppBar,
-  Box,
-  Container,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import SchoolIcon from "@mui/icons-material/School";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import { Link } from "react-router";
+import { AppBar, Box, Container, Toolbar, Typography } from "@mui/material";
+import { Navigation } from "./components/Navigation/Navigation";
 
 type LayoutProps = {
   children: ReactNode;
@@ -27,36 +17,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                 Vocabulary Builder
               </Typography>
             </Box>
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <IconButton
-                component={Link}
-                to="/"
-                size="large"
-                aria-label="Practice"
-                color="inherit"
-              >
-                <SchoolIcon />
-              </IconButton>
-              <IconButton
-                component={Link}
-                to="/vocabulary"
-                size="large"
-                aria-label="Vocabulary"
-                color="inherit"
-              >
-                <BookmarkIcon />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="Show more"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
+            <Navigation />
           </Toolbar>
         </Container>
       </AppBar>
