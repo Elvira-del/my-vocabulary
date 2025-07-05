@@ -12,7 +12,7 @@ const navStackStyles = {
 };
 
 const navLinkStyles = {
-  padding: { xs: 4, sm: 2 },
+  padding: { xs: 2, sm: 1 },
   transition: "0.4s ease-out",
   "&.active": {
     color: "primary.main",
@@ -20,6 +20,11 @@ const navLinkStyles = {
     transition: "0.4s ease-in",
   },
 };
+
+const navItems = [
+  { label: "Practice", to: "/", icon: <SchoolIcon /> },
+  { label: "Vocabulary", to: "/vocabulary", icon: <BookmarkIcon /> },
+];
 
 export const NavigationList: FC = () => {
   return (
@@ -30,30 +35,20 @@ export const NavigationList: FC = () => {
         spacing={{ xs: 1, sm: 2 }}
         sx={navStackStyles}
       >
-        <ListItem sx={{ padding: 0 }}>
-          <IconButton
-            component={NavLink}
-            to="/"
-            size="large"
-            aria-label="Practice"
-            color="inherit"
-            sx={navLinkStyles}
-          >
-            <SchoolIcon />
-          </IconButton>
-        </ListItem>
-        <ListItem sx={{ padding: 0 }}>
-          <IconButton
-            component={NavLink}
-            to="/vocabulary"
-            size="large"
-            aria-label="Vocabulary"
-            color="inherit"
-            sx={navLinkStyles}
-          >
-            <BookmarkIcon />
-          </IconButton>
-        </ListItem>
+        {navItems.map(({ label, to, icon }) => (
+          <ListItem sx={{ padding: 0 }}>
+            <IconButton
+              component={NavLink}
+              to={to}
+              size="large"
+              aria-label={label}
+              color="inherit"
+              sx={navLinkStyles}
+            >
+              {icon}
+            </IconButton>
+          </ListItem>
+        ))}
       </Stack>
     </Box>
   );
