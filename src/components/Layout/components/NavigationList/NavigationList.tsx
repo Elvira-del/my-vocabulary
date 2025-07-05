@@ -22,8 +22,13 @@ const navLinkStyles = {
 };
 
 const navItems = [
-  { label: "practice page", to: "/", icon: <SchoolIcon /> },
-  { label: "vocabulary page", to: "/vocabulary", icon: <BookmarkIcon /> },
+  { id: "practice", label: "practice page", to: "/", icon: <SchoolIcon /> },
+  {
+    id: "vocabulary",
+    label: "vocabulary page",
+    to: "/vocabulary",
+    icon: <BookmarkIcon />,
+  },
 ];
 
 export const NavigationList: FC = () => {
@@ -35,8 +40,8 @@ export const NavigationList: FC = () => {
         spacing={{ xs: 1, sm: 2 }}
         sx={navStackStyles}
       >
-        {navItems.map(({ label, to, icon }) => (
-          <ListItem key={label} sx={{ padding: 0 }}>
+        {navItems.map(({ id, label, to, icon }) => (
+          <ListItem key={id} sx={{ padding: 0 }}>
             <IconButton
               component={NavLink}
               to={to}
