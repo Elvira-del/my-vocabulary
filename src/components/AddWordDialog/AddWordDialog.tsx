@@ -6,22 +6,9 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { MenuItem, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import useVocabularyStore from "src/store/store";
 import { AddWordButton } from "../AddWordButton/AddWordButton";
-
-type WordClasses = string[];
-
-const wordClasses: WordClasses = [
-  "noun",
-  "verb",
-  "adjective",
-  "adverb",
-  "preposition",
-  "determiner",
-  "pronoun",
-  "conjunction",
-];
 
 const dialogClass = {
   padding: 3,
@@ -37,7 +24,6 @@ const formContentClass = {
 export const AddWordDialog: FC = () => {
   const [vocabularyElem, setVocabularyElem] = useState({
     word: "",
-    class: "",
     definition: "",
     unlearned: true,
     learned: false,
@@ -71,20 +57,21 @@ export const AddWordDialog: FC = () => {
         onClose={handleDialogClose}
         aria-labelledby="dialog-title"
         sx={dialogClass}
-        PaperProps={{
-          component: "form",
-          onSubmit: (e: FormEvent<HTMLFormElement>) => {
-            e.preventDefault();
-            addWord(vocabularyElem);
-            setVocabularyElem({
-              word: "",
-              class: "",
-              definition: "",
-              unlearned: true,
-              learned: false,
-              favorite: false,
-            });
-            handleDialogClose();
+        slotProps={{
+          paper: {
+            component: "form",
+            onSubmit: (e: FormEvent<HTMLFormElement>) => {
+              e.preventDefault();
+              addWord(vocabularyElem);
+              setVocabularyElem({
+                word: "",
+                definition: "",
+                unlearned: true,
+                learned: false,
+                favorite: false,
+              });
+              handleDialogClose();
+            },
           },
         }}
       >
@@ -100,21 +87,6 @@ export const AddWordDialog: FC = () => {
             value={vocabularyElem.word}
             onChange={handleChange}
           />
-          <TextField
-            id="class"
-            name="class"
-            select
-            label="Word class"
-            variant="outlined"
-            value={vocabularyElem.class}
-            onChange={handleChange}
-          >
-            {wordClasses.map((option, idx) => (
-              <MenuItem key={idx} value={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
           <TextField
             id="definition"
             name="definition"

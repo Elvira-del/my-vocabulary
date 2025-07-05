@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 export type VocabularyElem = {
   id: string;
   word: string;
-  class: string;
   definition: string;
   unlearned: boolean;
   learned: boolean;

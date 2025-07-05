@@ -48,10 +48,7 @@ export const VocabularyList: FC<VocabularyListProps> = ({
           <ListItemText
             primary={<Typography component="span">{elem?.word}</Typography>}
             secondary={
-              <>
-                <Typography component="p">{elem?.class}</Typography>
-                <Typography component="p">{elem?.definition}</Typography>
-              </>
+              <Typography component="p">{elem?.definition}</Typography>
             }
           />
         </ListItem>
